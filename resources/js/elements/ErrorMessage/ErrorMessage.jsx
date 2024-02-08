@@ -4,8 +4,8 @@ const ErrorMessage = ({ error }) => {
     }
 
     return (
-        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
-            <span class="font-medium">Error! </span>{error}
+        <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+            <span className="font-medium">Error! </span>{error}
         </div>
     )
 }
