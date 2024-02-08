@@ -15,7 +15,11 @@ The local development environment uses Docker powered by Laravel Sail.
 ```shell
 $ git clone git@github.com:moskcv/weather.git
 $ cd weather
-$ ./install
+$ docker run --rm \
+    -v $(pwd):/opt \
+    -w /opt \
+    laravelsail/php82-composer:latest \
+    bash -c "composer install --ignore-platform-reqs && php -r \"file_exists('.env') || copy('.env.example', '.env');\" && php ./artisan key:generate"
 $ ./vendor/bin/sail up -d
 $ ./vendor/bin/sail artisan migrate
 $ ./vendor/bin/sail npm install
