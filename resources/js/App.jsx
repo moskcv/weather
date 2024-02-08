@@ -12,7 +12,7 @@ const App = () => {
             .then((response) => {
                 setResponse(response.data);
             })
-            .catch((error) => setError(error?.response?.data?.message || 'Something went wrong'));
+            .catch((error) => setError(error?.response?.data?.message || 'Something went wrong'))
     }
 
     const saveForecast = () => {
@@ -23,29 +23,31 @@ const App = () => {
 
         axios.post('/api/v1/forecast', payload)
             .then((response) => {
-
+                setResponse(response.data);
             })
-            .catch((error) => setError(error?.response?.data?.message || 'Something went wrong'));
+            .catch((error) => setError(error?.response?.data?.message || 'Something went wrong'))
     }
 
     return (
-        <>
+        <div className="container mx-auto p-4">
             <ErrorMessage error={error} />
             <Form
                 onApiSearch={(city) => fetch('/api/v1/forecast/api', city)}
                 onDatabaseSearch={(city) => fetch('/api/v1/forecast', city)}
             />
             {response && (
-                <CityBlock
-                    city={response?.city}
-                    updated={response?.updated_at}
-                    periodFrom={response?.period_from}
-                    periodTo={response?.period_to}
-                    saveForecast={saveForecast}
-                />
+                <>
+                    <CityBlock
+                        city={response?.city}
+                        updated={response?.updated_at}
+                        periodFrom={response?.period_from}
+                        periodTo={response?.period_to}
+                        saveForecast={saveForecast}
+                    />
+                    <ForecastData data={response?.data} />
+                </>
             )}
-            <ForecastData data={response?.data} />
-        </>
+        </div>
     )
 }
 

@@ -4,22 +4,22 @@ const ForecastData = ({ data }) => {
     }
 
     return (
-        <table>
-            <thead>
+        <table className="w-full table-auto">
+            <thead className="border-b font-medium">
                 <tr>
-                    <th>Datetime</th>
-                    <th>Min temp</th>
-                    <th>Max temp</th>
-                    <th>Wind speed</th>
+                    <th scope="col" className="text-left px-6 py-4">Datetime</th>
+                    <th scope="col" className="text-right px-6 py-4">Min temp</th>
+                    <th scope="col" className="text-right px-6 py-4">Max temp</th>
+                    <th scope="col" className="text-right px-6 py-4">Wind speed</th>
                 </tr>
             </thead>
             <tbody>
                 {data?.map((item, i) => (
-                    <tr key={i}>
-                        <td>{item.timestamp_dt}</td>
-                        <td>{item.min_tmp}</td>
-                        <td>{item.max_tmp}</td>
-                        <td>{item.wind_spd}</td>
+                    <tr key={i} className="border-b">
+                        <td className="text-left px-6 py-4">{item.timestamp_dt}</td>
+                        <td className="text-right px-6 py-4">{item.min_tmp}{'\u00b0'}C</td>
+                        <td className="text-right px-6 py-4">{item.max_tmp}{'\u00b0'}C</td>
+                        <td className="text-right px-6 py-4">{item.wind_spd} km/h</td>
                     </tr>
                 ))}
             </tbody>
